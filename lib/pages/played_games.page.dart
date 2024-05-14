@@ -39,7 +39,7 @@ class PlayedGamesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Minha lista', style: TextStyle(color: Tema.textColor)),
+        title: Text('Minha Lista', style: TextStyle(color: Tema.textColor)),
         backgroundColor: Tema.corPrimeira,
         iconTheme: IconThemeData(color: Colors.white),
       ),

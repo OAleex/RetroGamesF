@@ -120,7 +120,7 @@ class _DiscussionDetailsPageState extends State<DiscussionDetailsPage> {
                     child: TextField(
                       controller: _commentController,
                       decoration: InputDecoration(
-                        labelText: 'Add a comment',
+                        labelText: 'Adicionar comentário',
                         labelStyle: TextStyle(color: Tema.textColor),
                         fillColor: Tema.textoInputColor,
                         filled: true,
