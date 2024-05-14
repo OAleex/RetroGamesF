@@ -15,7 +15,7 @@ O RetroGamesForum é um aplicativo desenvolvido em Flutter destinado a entusiast
 Para executar este projeto, siga os passos abaixo:
 
 1. Clone o repositório para sua máquina local:
-`git clone https://github.com/seu-usuario/retrogamesforum.git`
+`git clone https://github.com/oaleex/retrogamesf.git`
 
 3. Navegue até o diretório do projeto:
 `cd retrogamesforum`
