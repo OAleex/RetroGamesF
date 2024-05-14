@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:retrogamesf/pages/feed_page.dart';
+import 'package:retrogamesf/pages/feed.page.dart';
 import 'package:retrogamesf/pages/login.page.dart';
 import 'package:retrogamesf/shared/tema.dart';
 
