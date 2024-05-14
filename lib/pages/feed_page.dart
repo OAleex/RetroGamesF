@@ -1,113 +1,90 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:retrogamesf/pages/create_discussion.page.dart';
+import 'package:retrogamesf/pages/rule.page.dart';
 import 'package:retrogamesf/shared/tema.dart';
 import 'package:retrogamesf/pages/discussion_details.page.dart';
 import 'package:retrogamesf/pages/login.page.dart';
 import 'package:retrogamesf/pages/played_games.page.dart';
-import 'package:retrogamesf/pages/osts.page.dart';
 import 'package:retrogamesf/pages/profile.page.dart';
 import 'package:retrogamesf/pages/chat.page.dart';
+import 'package:retrogamesf/pages/create_discussion.page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class FeedPage extends StatelessWidget {
+class FeedPage extends StatefulWidget {
   const FeedPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final List<Map<String, dynamic>> discussions = [
-      {
-        'title': 'Super Mario World',
-        'status': true,
-        'comments': [
-          {
-            'username': 'MarioFan',
-            'comment': 'This level is super tough!',
-            'emoji': '😤'
-          },
-          {
-            'username': 'Luigi42',
-            'comment': 'Totally stuck on the ghost house.',
-            'emoji': '👻'
-          },
-        ],
-      },
-      {
-        'title': 'Final Fantasy VI - Melhores Estratégias',
-        'status': false,
-        'comments': [
-          {
-            'username': 'TerraLover',
-            'comment': 'Anyone tried the new glitch?',
-            'emoji': '🤔'
-          },
-          {
-            'username': 'LockeCole',
-            'comment': 'Here’s a tip for getting past the empire!',
-            'emoji': '💡'
-          },
-        ],
-      },
-    ];
+  _FeedPageState createState() => _FeedPageState();
+}
 
+class _FeedPageState extends State<FeedPage> {
+  List<Map<String, dynamic>> discussions = [];
+
+  @override
+  void initState() {
+    super.initState();
+    loadDiscussions();
+  }
+
+  Future<void> loadDiscussions() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? discussionsJson = prefs.getString('discussions');
+    if (discussionsJson != null) {
+      setState(() {
+        discussions = List<Map<String, dynamic>>.from(json.decode(discussionsJson));
+      });
+    }
+  }
+
+  Future<void> saveDiscussions() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('discussions', json.encode(discussions));
+  }
+
+  void addDiscussion(String title) {
+    setState(() {
+      discussions.add({'title': title});
+      saveDiscussions();
+    });
+  }
+
+
+    @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Tema.backgroundColor,
       appBar: AppBar(
-        title:
-            Text('Feed de Discussões', style: TextStyle(color: Tema.textColor)),
+        title: Text('Feed de Discussões', style: TextStyle(color: Tema.textColor)),
         backgroundColor: Tema.corPrimeira,
         automaticallyImplyLeading: false,
-        iconTheme: IconThemeData(
-            color: Colors.white), // Ajusta a cor da seta de retorno
+        iconTheme: IconThemeData(color: Colors.white),
         actions: [
           PopupMenuButton<String>(
             onSelected: (String result) {
               switch (result) {
                 case 'profile':
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ProfilePage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilePage()));
                   break;
                 case 'playedGames':
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => PlayedGamesPage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => PlayedGamesPage()));
                   break;
-                case 'osts':
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const OSTsPage()));
+                case 'regrasList':
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => RulesPage()));
                   break;
               }
             },
             itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-              const PopupMenuItem<String>(
-                value: 'profile',
-                child: Text('Meu Perfil',
-                    style: TextStyle(
-                        color: Colors.white)), // Cor branca para o texto
-              ),
-              const PopupMenuItem<String>(
-                value: 'playedGames',
-                child: Text('Played Games',
-                    style: TextStyle(
-                        color: Colors.white)), // Cor branca para o texto
-              ),
-              const PopupMenuItem<String>(
-                value: 'osts',
-                child: Text('OSTs',
-                    style: TextStyle(
-                        color: Colors.white)), // Cor branca para o texto
-              ),
+              const PopupMenuItem<String>(value: 'profile', child: Text('Meu Perfil', style: TextStyle(color: Colors.white))),
+              const PopupMenuItem<String>(value: 'playedGames', child: Text('Minha Lista', style: TextStyle(color: Colors.white))),
+              const PopupMenuItem<String>(value: 'regrasList', child: Text('Regras', style: TextStyle(color: Colors.white))),
             ],
-            color: Tema.textoInputColor, // Define a cor do fundo do menu
+            color: Tema.textoInputColor,
           ),
           IconButton(
             icon: const Icon(Icons.exit_to_app),
             onPressed: () {
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => const LoginPage()));
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage()));
             },
             tooltip: 'Logout',
           ),
@@ -121,23 +98,15 @@ class FeedPage extends StatelessWidget {
             color: Tema.textoInputColor,
             margin: const EdgeInsets.all(8),
             child: ListTile(
-              title: Text(discussion['title'] as String,
-                  style: TextStyle(color: Tema.textColor)),
-              trailing: Icon(
-                  (discussion['status'] as bool)
-                      ? Icons.check_circle_outline
-                      : Icons.cancel,
-                  color: (discussion['status'] as bool)
-                      ? Colors.green
-                      : Colors.red),
+              title: Text(discussion['title'] as String, style: TextStyle(color: Tema.textColor)),
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => DiscussionDetailsPage(
                       title: discussion['title'] as String,
-                      comments:
-                          discussion['comments'] as List<Map<String, String>>,
+                      initialComments: [],
+                      comments: [],
                     ),
                   ),
                 );
@@ -151,22 +120,25 @@ class FeedPage extends StatelessWidget {
         children: [
           FloatingActionButton(
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const ChatPage()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const ChatPage()));
             },
             child: const Icon(Icons.chat),
             backgroundColor: Tema.corPrimeira,
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           FloatingActionButton(
             onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const CreateDiscussionPage()));
-            },
-            child: const Icon(Icons.add),
-            backgroundColor: Tema.corPrimeira,
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => CreateDiscussionPage(
+                onCreateDiscussion: addDiscussion,
+              ),
+            ),
+          );
+        },
+        child: const Icon(Icons.add),
+        backgroundColor: Tema.corPrimeira,
           ),
         ],
       ),

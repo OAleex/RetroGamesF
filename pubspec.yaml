@@ -38,6 +38,7 @@ dependencies:
   cupertino_icons: ^1.0.6
   shared_preferences: ^2.2.3
   audioplayers: ^6.0.0
+  image_picker: ^1.1.1
 
 dev_dependencies:
   build_runner: ^2.0.6
@@ -64,10 +65,8 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/audio/crash_bandicoot.mp3
-    #- assets/audio/super_mario.mp3
-    #- assets/audio/pepsiman.mp3
-    #- assets/audio/final_fantasy_vii.mp3
+  - assets/logo.png
+  - assets/Avatar.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:retrogamesf/pages/feed_page.dart';
 import 'package:retrogamesf/pages/create_account.page.dart';
-import 'package:retrogamesf/shared/tema.dart'; // Importe a classe Tema
+import 'package:retrogamesf/shared/tema.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -24,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Tema.backgroundColor, // Usando cor de fundo do Tema
+      backgroundColor: Tema.backgroundColor,
       body: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(20),
@@ -36,46 +36,46 @@ class _LoginPageState extends State<LoginPage> {
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  color: Tema.textColor, // Usando cor de texto do Tema
+                  color: Tema.textColor,
                 ),
               ),
               SizedBox(height: 40),
               TextField(
                 controller: _emailController,
-                style: TextStyle(color: Tema.textColor), // Usando cor de texto do Tema
+                style: TextStyle(color: Tema.textColor),
                 decoration: InputDecoration(
                   labelText: 'Email',
                   labelStyle: TextStyle(color: Colors.grey[400]),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Tema.borderColor), // Usando cor de borda do Tema
+                    borderSide: BorderSide(color: Tema.borderColor),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Tema.borderColor), // Usando cor de borda do Tema
+                    borderSide: BorderSide(color: Tema.borderColor),
                   ),
-                  prefixIcon: Icon(Icons.email, color: Tema.borderColor), // Usando cor de ícone do Tema
+                  prefixIcon: Icon(Icons.email, color: Tema.borderColor),
                 ),
               ),
               SizedBox(height: 20),
               TextField(
                 controller: _senhaController,
                 obscureText: _ocultarSenha,
-                style: TextStyle(color: Tema.textColor), // Usando cor de texto do Tema
+                style: TextStyle(color: Tema.textColor),
                 decoration: InputDecoration(
                   labelText: 'Senha',
                   labelStyle: TextStyle(color: Colors.grey[400]),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Tema.borderColor), // Usando cor de borda do Tema
+                    borderSide: BorderSide(color: Tema.borderColor),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                        color: Tema.borderColor), // Usando cor de borda do Tema
+                        color: Tema.borderColor),
                   ),
                   prefixIcon: Icon(Icons.lock_outline,
-                      color: Tema.borderColor), // Ícone de senha
+                      color: Tema.borderColor),
                   suffixIcon: IconButton(
                     icon: Icon(
                       _ocultarSenha ? Icons.visibility_off : Icons.visibility,
-                      color: Tema.buttonColor, // Usando cor de ícone do Tema
+                      color: Tema.buttonColor,
                     ),
                     onPressed: _toggleSenha,
                   ),
@@ -90,8 +90,8 @@ class _LoginPageState extends State<LoginPage> {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Tema.buttonColor, // Usando cor de fundo do botão do Tema
-                  foregroundColor: Tema.buttonTextColor, // Usando cor de texto do botão do Tema
+                  backgroundColor: Tema.buttonColor,
+                  foregroundColor: Tema.buttonTextColor,
                   padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                   textStyle: const TextStyle(fontSize: 16),
                 ),
@@ -106,8 +106,8 @@ class _LoginPageState extends State<LoginPage> {
                   );
                 },
                 style: TextButton.styleFrom(
-                  backgroundColor: Tema.buttonColor, // Usando cor de fundo do botão do Tema
-                  foregroundColor: Tema.buttonTextColor, // Usando cor de texto do botão do Tema
+                  backgroundColor: Tema.buttonColor,
+                  foregroundColor: Tema.buttonTextColor,
                   padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                   textStyle: const TextStyle(fontSize: 16),
                 ),

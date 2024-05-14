@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:retrogamesf/pages/feed_page.dart';
-import 'package:retrogamesf/pages/login.page.dart'; // Importe a LoginPage para redirecionamento
-import 'package:retrogamesf/shared/tema.dart'; // Importe a classe Tema
+import 'package:retrogamesf/pages/login.page.dart';
+import 'package:retrogamesf/shared/tema.dart';
 
 class CreateAccountPage extends StatefulWidget {
   const CreateAccountPage({Key? key}) : super(key: key);
@@ -92,7 +92,7 @@ class _CreateAccountPage extends State<CreateAccountPage> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Tema.buttonColor,
                   foregroundColor: Tema.buttonTextColor,
-                  padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10), // Ajuste do padding para corresponder ao login
+                  padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                   textStyle: const TextStyle(fontSize: 16),
                 ),
                 child: Text('Registrar\ne Entrar'),

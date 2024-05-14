@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:retrogamesf/models/game.model.dart';
-import 'package:retrogamesf/shared/tema.dart'; // Certifique-se de que Tema está importado corretamente
+import 'package:retrogamesf/shared/tema.dart';
 
 class PlayedGamesPage extends StatelessWidget {
   PlayedGamesPage({Key? key}) : super(key: key);
@@ -11,27 +11,27 @@ class PlayedGamesPage extends StatelessWidget {
       title: "Crash Bandicoot",
       platform: "PlayStation",
       releaseDate: DateTime(1996, 9, 9),
-      description: "A classic action platformer from Naughty Dog.",
+      description: "Um clássico da Naughty Dog.",
       userRating: 5.0,
-      userComment: "Loved it, very nostalgic!",
+      userComment: "Amo muito, bem nostálgico.",
     ),
     Game(
       id: 2,
       title: "Super Mario World",
       platform: "SNES",
       releaseDate: DateTime(1990, 11, 21),
-      description: "One of the best platform games ever made.",
+      description: "Um dos melhores jogos de plataforma já feitos.",
       userRating: 5.0,
-      userComment: "A timeless masterpiece!",
+      userComment: "Obra-prima!",
     ),
     Game(
       id: 3,
       title: "Final Fantasy VII",
       platform: "PlayStation",
       releaseDate: DateTime(1997, 1, 31),
-      description: "A landmark RPG by Square Enix.",
+      description: "Um RPG marcante da Square Enix.",
       userRating: 5.0,
-      userComment: "Epic storyline and deep gameplay.",
+      userComment: "Enredo épico e jogabilidade envolvente.",
     ),
   ];
 
@@ -39,7 +39,7 @@ class PlayedGamesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Played Games', style: TextStyle(color: Tema.textColor)),
+        title: Text('Minha lista', style: TextStyle(color: Tema.textColor)),
         backgroundColor: Tema.corPrimeira,
         iconTheme: IconThemeData(color: Colors.white),
       ),

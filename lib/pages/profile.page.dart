@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:retrogamesf/shared/tema.dart'; // Certifique-se de importar o Tema
+import 'package:retrogamesf/shared/tema.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -12,7 +12,7 @@ class ProfilePage extends StatelessWidget {
         backgroundColor: Tema.corPrimeira,
         iconTheme: IconThemeData(color: Colors.white),
       ),
-      backgroundColor: Tema.backgroundColor, // Usando a cor de fundo do Tema
+      backgroundColor: Tema.backgroundColor,
       body: Center(
         child: SingleChildScrollView(
           child: Column(
@@ -21,15 +21,15 @@ class ProfilePage extends StatelessWidget {
             children: <Widget>[
               const SizedBox(height: 40),
               CircleAvatar(
-                radius: 80, // Aumentado para um tamanho maior
-                backgroundImage: AssetImage('assets/profile.jpg'), // Substitua com a sua imagem
+                radius: 80,
+                backgroundImage: AssetImage('assets/Avatar.png'),
               ),
               const SizedBox(height: 40),
-              _buildInfoBox(context, "Nome do Usuário", "Nome do Usuário"),
+              _buildInfoBox(context, "name", "Player1"),
               const SizedBox(height: 20),
-              _buildInfoBox(context, "E-mail", "example@example.com"),
+              _buildInfoBox(context, "E-mail", "player1@g.com"),
               const SizedBox(height: 20),
-              _buildInfoBox(context, "Data de Nascimento", "01/01/1990"),
+              _buildInfoBox(context, "dn", "09/06/1990"),
               const SizedBox(height: 20),
             ],
           ),
@@ -45,7 +45,7 @@ class ProfilePage extends StatelessWidget {
       alignment: Alignment.center,
       child: Text(content, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Tema.textColor)),
       decoration: BoxDecoration(
-        color: Tema.textoInputColor, // Usando a nova cor de input para fundo das caixas de informação
+        color: Tema.textoInputColor,
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
